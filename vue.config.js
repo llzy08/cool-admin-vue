@@ -21,7 +21,8 @@ const PROXY_LIST = {
 };
 
 module.exports = {
-	publicPath: "/",
+	publicPath: "./",
+	assetsDir: 'static',
 	lintOnSave: true,
 	productionSourceMap: false,
 	parallel: require("os").cpus().length > 1,

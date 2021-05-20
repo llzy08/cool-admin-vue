@@ -1,116 +1,82 @@
 <template>
 	<div class="page-login">
 		<div class="box">
-			<img class="logo" src="../../static/images/logo.png" alt="" />
-			<p class="desc">COOL ADMIN是一款快速开发后台权限管理系统</p>
-
-			<el-form ref="form" class="form" size="medium" :disabled="saving">
-				<el-form-item label="用户名">
-					<el-input
-						placeholder="请输入用户名"
-						v-model="form.username"
-						maxlength="20"
-						auto-complete="off"
-					></el-input>
-				</el-form-item>
-
-				<el-form-item label="密码">
-					<el-input
-						type="password"
-						placeholder="请输入密码"
-						v-model="form.password"
-						maxlength="20"
-						auto-complete="off"
-					></el-input>
-				</el-form-item>
-
-				<el-form-item label="验证码" class="captcha">
-					<el-input
-						placeholder="请输入图片验证码"
-						maxlength="4"
-						v-model="form.verifyCode"
-						auto-complete="off"
-						@keyup.enter.native="next"
-					></el-input>
-
-					<captcha
-						ref="captcha"
-						class="value"
-						v-model="form.captchaId"
-						@change="captchaChange"
-					></captcha>
-				</el-form-item>
-			</el-form>
-
-			<el-button round size="mini" class="submit-btn" @click="next" :loading="saving"
-				>登录</el-button
-			>
+			<img
+			 class="logo"
+			 src="../../static/images/logo.png"
+			 alt=""
+			/>
+			<!-- <p class="desc">小鲸系统</p> -->
+			<div
+			 id="qrcode"
+			 ref="qrcode"
+			></div>
 		</div>
 	</div>
 </template>
 
 <script>
-import Captcha from "./components/captcha";
+import SnowflakeId from "snowflake-id";
+import QRCode from "qrcodejs2"
 
 export default {
-	components: {
-		Captcha
-	},
-
+	// components: { QRCode },
 	data() {
 		return {
-			form: {
-				username: "admin",
-				password: "123456",
-				captchaId: "",
-				verifyCode: ""
-			},
-			saving: false
+			saving: false,
+			loginId: null
 		};
 	},
-
+	mounted() {
+		this.onTimer1s()
+	},
 	methods: {
-		captchaChange() {
-			this.form.verifyCode = "";
+		async refalsh() {
+			this.loginId = null;
 		},
 
-		async next() {
-			const { username, password, verifyCode } = this.form;
-
-			if (!username) {
-				return this.$message.warning("用户名不能为空");
+		async onTimer1s() {
+			if (!this.loginId) {
+				const id = new SnowflakeId();
+				this.loginId = id.generate();
+				let appKey = 'wx8235c68a98380f6c'
+				let redirect_uri = 'http://weixin.szsige.com'
+				let state = this.loginId
+				let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appKey}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_userinfo&state=${state}#wechat_redirect`
+				console.log(url)
+				let qrcode = new QRCode("qrcode", {
+					width: 256,
+					height: 256,
+					text: url,
+					colorDark : "#2f3447",
+   					colorLight : "#fff",
+					render: "table",
+					correctLevel : QRCode.CorrectLevel.L
+				});
 			}
-
-			if (!password) {
-				return this.$message.warning("密码不能为空");
-			}
-
-			if (!verifyCode) {
-				return this.$message.warning("图片验证码不能为空");
-			}
-
+			this.checkLogin();
+		},
+		
+		async checkLogin() {
 			this.saving = true;
-
 			try {
+				await this.$store.dispatch("userLogin", this.loginId);
+				return this.$router.push("/");
 				// 登录
-				await this.$store.dispatch("userLogin", this.form);
-
-				// 用户信息
-				await this.$store.dispatch("userInfo");
-
-				// 权限菜单
-				let [first] = await this.$store.dispatch("permMenu");
-
-				if (!first) {
-					this.$message.error("该账号没有权限");
-				} else {
-					this.$router.push("/");
-				}
+				
+				// // 用户信息
+				// await this.$store.dispatch("userInfo");
+				// // 权限菜单
+				// let [first] = await this.$store.dispatch("permMenu");
+				// if (!first) {
+				// 	this.$message.error("该账号没有权限");
+				// } else {
+				// 	this.$router.push("/");
+				// }
 			} catch (err) {
-				this.$message.error(err);
-				this.$refs.captcha.refresh();
+				// this.$message.error(err);
+				// this.$refs.captcha.refresh();
 			}
-
 			this.saving = false;
 		}
 	}
@@ -201,5 +167,7 @@ export default {
 			color: #000;
 		}
 	}
+
+	
 }
 </style>

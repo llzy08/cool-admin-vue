@@ -1,6 +1,12 @@
+<!--
+ * @Description: 
+ * @Autor: lzy
+ * @Date: 2021-05-18 16:54:20
+ * @LastEditTime: 2021-05-19 15:40:08
+-->
 <template>
 	<div class="app-slider">
-		<div class="app-slider__logo" @click="toHome">
+		<div class="app-slider__logo">
 			<img src="@/assets/icon/logo/silder-simple.png" />
 			<span v-if="!menuCollapse || browser.isMini">{{ app.name }}</span>
 		</div>
@@ -21,7 +27,7 @@ export default {
 
 	methods: {
 		toHome() {
-			location.href = "https://cool-js.com/";
+			location.href = "";
 		}
 	}
 };

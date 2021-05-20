@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Autor: lzy
+ * @Date: 2021-05-18 16:54:20
+ * @LastEditTime: 2021-05-19 15:05:41
+ */
 import { BaseService, Service } from "cl-admin";
 
 @Service("base/open")
@@ -9,16 +15,22 @@ class Open extends BaseService {
 	 * @returns
 	 * @memberof CommonService
 	 */
-	userLogin({ username, password, captchaId, verifyCode }) {
+	userLogin(loginId) {
 		return this.request({
-			url: "/login",
+			url: "https://www.szsige.com/auth/connect/token",
 			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"
+		 	},
+			neetQs: true,
 			data: {
-				username,
-				password,
-				captchaId,
-				verifyCode
+				client_id: "25EFDE0F7E244147A9218C4F508E6E13",
+				client_secret: "sige.secret",
+				grant_type: "client_credentials",
+				scope: "device.api identity.api",
+				loginId
 			}
+			
 		});
 	}
 

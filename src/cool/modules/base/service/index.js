@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Autor: lzy
+ * @Date: 2021-05-18 16:54:20
+ * @LastEditTime: 2021-05-20 12:17:34
+ */
 import Common from "./common";
 import Open from "./open";
 import SysUser from "./system/user";
@@ -5,6 +11,7 @@ import SysMenu from "./system/menu";
 import SysRole from "./system/role";
 import SysDept from "./system/dept";
 import SysParam from "./system/param";
+import SysAccount from "./system/account";
 import SysLog from "./system/log";
 import PluginInfo from "./plugin/info";
 
@@ -18,6 +25,9 @@ export default {
 		dept: new SysDept(),
 		param: new SysParam(),
 		log: new SysLog()
+	},
+	lzy : {
+		account: new SysAccount()
 	},
 	plugin: {
 		info: new PluginInfo()

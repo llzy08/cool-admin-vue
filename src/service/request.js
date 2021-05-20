@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from "qs";
 import { Message } from "element-ui";
 import store from "@/store";
 import { isDev } from "@/config/env";
@@ -8,7 +9,7 @@ import "nprogress/nprogress.css";
 
 axios.defaults.timeout = 30000;
 axios.defaults.withCredentials = true;
-
+axios.defaults.baseURL = "https://api.szsige.com";
 NProgress.configure({
 	showSpinner: false
 });
@@ -39,13 +40,16 @@ axios.interceptors.request.use(
 				NProgress.start();
 			}
 		}
-
 		// 请求信息
 		if (isDev) {
 			console.group(config.url);
 			console.log("method:", config.method);
 			console.table("data:", config.method == "get" ? config.params : config.data);
 			console.groupEnd();
+		}
+
+		if (config.neetQs) {
+			config.data = qs.stringify(config.data);
 		}
 
 		// 验证 token
@@ -96,17 +100,20 @@ axios.interceptors.response.use(
 	res => {
 		NProgress.done();
 		const { code, data, message } = res.data;
-
+		console.log(res.data)
 		if (!res.data) {
 			return res;
 		}
-
-		switch (code) {
-			case 1000:
-				return data;
-			default:
-				return Promise.reject(message);
+		if (res.status == 200) {
+			return res.data;
 		}
+		return Promise.reject(message);
+		// switch (code) {
+		// 	case 1000:
+		// 		return data;
+		// 	default:
+		// 		return Promise.reject(message);
+		// }
 	},
 	async error => {
 		NProgress.done();

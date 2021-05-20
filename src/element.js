@@ -59,10 +59,10 @@ import {
 	Cascader,
 	// ColorPicker,
 	// Transfer,
-	// Container,
+	Container,
 	// Header,
-	// Aside,
-	// Main,
+	Aside,
+	Main,
 	// Footer,
 	// Timeline,
 	// TimelineItem,
@@ -143,10 +143,10 @@ Vue.use(CollapseItem);
 Vue.use(Cascader);
 // Vue.use(ColorPicker);
 // Vue.use(Transfer);
-// Vue.use(Container);
+Vue.use(Container);
 // Vue.use(Header);
-// Vue.use(Aside);
-// Vue.use(Main);
+Vue.use(Aside);
+Vue.use(Main);
 // Vue.use(Footer);
 // Vue.use(Timeline);
 // Vue.use(TimelineItem);

@@ -18,7 +18,7 @@ export default {
 		// 用户登录
 		userLogin({ commit }, form) {
 			return this.$service.open.userLogin(form).then(res => {
-				commit("SET_TOKEN", res);
+				commit("SET_TOKEN", {token: res.access_token, expire: res.expires_in ,refreshToken: res.access_token, refreshExpire : res.expires_in} );
 				return res;
 			});
 		},
