@@ -2,7 +2,7 @@
  * @Description: 
  * @Autor: lzy
  * @Date: 2021-05-20 15:46:46
- * @LastEditTime: 2021-05-20 15:59:52
+ * @LastEditTime: 2021-05-24 14:30:33
 -->
 <template>
 	<div class="page-my-info">
@@ -10,10 +10,18 @@
 
 		<el-form size="small" label-width="100px" :model="form" :disabled="saving">
 
+			<el-form-item label="等级">
+				  <el-input :value="form.level" disabled></el-input>
+			</el-form-item>
+
+			<el-form-item label="剩余有效期">
+				  <el-input :value="(form.effective || 0) + '天'" disabled></el-input>
+			</el-form-item>
+
 			<el-form-item label="执行时间">
-				  <el-time-picker
+				<el-time-picker
 					is-range
-					v-model="value1"
+					v-model="form.range"
 					range-separator="至"
 					start-placeholder="开始时间"
 					end-placeholder="结束时间"
@@ -37,7 +45,7 @@ export default {
 		return {
 			form: {},
 			saving: false,
-			value1: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],
+			value1: [new Date(2016, 9, 10, 0, 0), new Date(2016, 9, 10, 0, 0)],
 		};
 	},
 
@@ -53,16 +61,13 @@ export default {
 		save() {
 			this.saving = true;
 
-			const { headImg, nickName, password } = this.form;
+			const { range } = this.form;
 
 			this.$service.common
 				.userUpdate({
-					headImg,
-					nickName,
-					password
+					range
 				})
 				.then(() => {
-					this.form.password = "";
 					this.$message.success("修改成功");
 					this.$store.dispatch("userInfo");
 				})

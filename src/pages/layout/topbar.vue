@@ -59,7 +59,7 @@ export default {
 		onCommand(name) {
 			switch (name) {
 				case "my":
-					this.$router.push("/my/info");
+					this.$router.push("/personal");
 					break;
 				case "exit":
 					this.$store.dispatch("userLogout").done(() => {

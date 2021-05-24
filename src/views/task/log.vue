@@ -2,7 +2,7 @@
  * @Description: 
  * @Autor: lzy
  * @Date: 2021-05-19 15:35:00
- * @LastEditTime: 2021-05-20 15:41:46
+ * @LastEditTime: 2021-05-24 14:44:56
 -->
 <template>
 
@@ -12,6 +12,8 @@
 	>
 		<el-row type="flex">
 			<cl-refresh-btn></cl-refresh-btn>
+			<cl-flex1></cl-flex1>
+			<cl-search-key></cl-search-key>
 		</el-row>
 
 		<el-row>
@@ -50,17 +52,19 @@ export default {
 				{
 					label: "站点",
 					prop: "website",
-					align: "center"
+					align: "center",
+					width: 150
 				},
 				{
 					label: "监控地址",
-					prop: "name",
+					prop: "taskUrl",
 					align: "center"
 				},
 				{
 					label: "SKU",
 					prop: "sku",
-					align: "center"
+					align: "center",
+					width: 80
 				},
 				{
 					label: "使用的账号",
@@ -68,9 +72,15 @@ export default {
 					align: "center"
 				},
 				{
-					label: "执行数量",
-					prop: "password",
+					label: "支付信息",
+					prop: "pay",
 					align: "center"
+				},
+				{
+					label: "执行数量",
+					prop: "num",
+					align: "center",
+					width: 80
 				},
 				{
 					label: "执行时间",
@@ -82,7 +92,7 @@ export default {
 	},
 	methods: {
 		onLoad({ ctx, app }) {
-			ctx.service(this.$service.lzy.account).done();
+			ctx.service(this.$service.lzy.tasklog).done();
 			app.refresh();
 		}
 	}

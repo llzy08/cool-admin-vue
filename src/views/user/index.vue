@@ -3,19 +3,10 @@
 		<div class="pane">
 			<!-- 组织架构 -->
 			<div class="dept">
-				<el-menu
-				 default-active="2"
-				 class="el-menu-vertical-demo"
-				 @open="handleOpen"
-				 @close="handleClose"
-				>
-					<el-menu-item
-					 v-for="(item,index) in 4"
-					 :index="item"
-					 :key="index"
-					>
-						<i class="el-icon-menu"></i>
-						<span slot="title">站点 {{index}}</span>
+				<el-menu default-active="1">
+					<el-menu-item index= "1">
+						<i class="el-icon-location"></i>
+						<span slot="title">www.coachoutlet.com</span>
 					</el-menu-item>
 
 				</el-menu>

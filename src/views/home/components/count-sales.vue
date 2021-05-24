@@ -1,9 +1,15 @@
+<!--
+ * @Description: 
+ * @Autor: lzy
+ * @Date: 2021-05-18 16:54:20
+ * @LastEditTime: 2021-05-24 11:23:37
+-->
 <template>
 	<div class="count-sales">
 		<div class="card">
 			<div class="card__header">
-				<span class="label">总销售额</span>
-				<span class="value">￥15920</span>
+				<span class="label">总销抢购数</span>
+				<span class="value">15920</span>
 			</div>
 
 			<div class="card__container">
@@ -29,8 +35,8 @@
 			</div>
 
 			<div class="card__footer">
-				<span class="label">日销售额</span>
-				<span class="value">￥1298.01</span>
+				<span class="label">日抢购数</span>
+				<span class="value">1298</span>
 			</div>
 		</div>
 	</div>

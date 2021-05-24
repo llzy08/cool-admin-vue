@@ -2,14 +2,12 @@
  * @Description: 
  * @Autor: lzy
  * @Date: 2021-05-19 17:44:00
- * @LastEditTime: 2021-05-20 15:10:15
+ * @LastEditTime: 2021-05-24 11:15:18
 -->
 <template>
 	<div class="error-page">
 		<h1 class="code">{{ code }}</h1>
 		<p class="desc">{{ desc }}</p>
-
-		<p class="copyright">Copyright © cool-admin-pro 2020</p>
 	</div>
 </template>
 

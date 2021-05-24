@@ -2,7 +2,7 @@
  * @Description: 
  * @Autor: lzy
  * @Date: 2021-05-18 16:54:20
- * @LastEditTime: 2021-05-20 12:17:34
+ * @LastEditTime: 2021-05-24 10:39:02
  */
 import Common from "./common";
 import Open from "./open";
@@ -11,7 +11,9 @@ import SysMenu from "./system/menu";
 import SysRole from "./system/role";
 import SysDept from "./system/dept";
 import SysParam from "./system/param";
-import SysAccount from "./system/account";
+import lzyAccount from "./lzy/account";
+import lzyTask from "./lzy/task";
+import lzyTaskLog from "./lzy/tasklog";
 import SysLog from "./system/log";
 import PluginInfo from "./plugin/info";
 
@@ -27,7 +29,9 @@ export default {
 		log: new SysLog()
 	},
 	lzy : {
-		account: new SysAccount()
+		account: new lzyAccount(),
+		task: new lzyTask(),
+		tasklog: new lzyTaskLog()
 	},
 	plugin: {
 		info: new PluginInfo()

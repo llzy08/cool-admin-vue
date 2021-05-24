@@ -1,5 +1,11 @@
+/*
+ * @Description: 
+ * @Autor: lzy
+ * @Date: 2021-05-18 16:54:20
+ * @LastEditTime: 2021-05-24 14:52:57
+ */
 import Crud from "cl-admin-crud";
-import Theme from "cl-admin-theme";
+// import Theme from "cl-admin-theme";
 
 export default {
 	modules: [
@@ -28,7 +34,7 @@ export default {
 			}
 		},
 		// 客服聊天
-		"chat",
+		// "chat",
 		// 任务管理
 		"task",
 		// 复制指令
@@ -38,9 +44,9 @@ export default {
 		// 示例页
 		"demo",
 		// 主题切换
-		{
-			name: "theme",
-			value: Theme
-		}
+		// {
+		// 	name: "theme",
+		// 	value: Theme
+		// }
 	]
 };

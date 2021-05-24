@@ -34,7 +34,6 @@ export default {
 		async refalsh() {
 			this.loginId = null;
 		},
-
 		async onTimer1s() {
 			if (!this.loginId) {
 				const id = new SnowflakeId();
@@ -61,13 +60,15 @@ export default {
 			this.saving = true;
 			try {
 				await this.$store.dispatch("userLogin", this.loginId);
+				// await this.$store.dispatch("userInfo");
+				await this.$store.dispatch("permMenu");
 				return this.$router.push("/");
 				// 登录
 				
 				// // 用户信息
 				// await this.$store.dispatch("userInfo");
 				// // 权限菜单
-				// let [first] = await this.$store.dispatch("permMenu");
+				
 				// if (!first) {
 				// 	this.$message.error("该账号没有权限");
 				// } else {

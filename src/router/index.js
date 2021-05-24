@@ -1,3 +1,9 @@
+/*
+ * @Description: router
+ * @Autor: lzy
+ * @Date: 2021-05-18 16:54:20
+ * @LastEditTime: 2021-05-24 14:27:12
+ */
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { routerMode } from "@/config/env";
@@ -31,19 +37,6 @@ const routes = [
 		children: list
 	}
 ];
-
-// [
-// 	{
-// 		path: "/",
-// 		name: "数据统计",
-// 		component: () => import("@/views/home/index.vue")
-// 	},
-// 	{
-// 		path: "/index2",
-// 		name: "数据统计2",
-// 		component: () => import("@/views/home/index2.vue")
-// 	}
-// ]
 
 const Router = new VueRouter({
 	mode: routerMode || "history",

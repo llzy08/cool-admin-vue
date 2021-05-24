@@ -2,7 +2,7 @@
  * @Description: 
  * @Autor: lzy
  * @Date: 2021-05-18 16:54:20
- * @LastEditTime: 2021-05-20 15:47:49
+ * @LastEditTime: 2021-05-24 11:06:32
  */
 import store from "store";
 import { getUrlParam } from "cl-admin/utils";
@@ -37,7 +37,7 @@ export const iconfontUrl = ``;
 
 // 程序配置参数
 export const app = store.get("__app__") || {
-	name: "JINGXIAO-ADMIN",
+	name: "JINGXIAO",
 
 	conf: {
 		showAMenu: false, // 是否显示一级菜单栏
@@ -83,18 +83,18 @@ export const menuList = [
 		}],
 	},
 	{
-		icon: "icon-user",
+		icon: "icon-dept",
 		name: "账号管理",
 		type: 0,
 		children: [{
-			icon: "icon-user",
+			icon: "icon-menu",
 			name: "账号列表",
 			router: "/user/index",
 			type: 1,
 			children: [],
 			viewPath: "views/user/index.vue",
 		}, {
-			icon: "icon-user",
+			icon: "icon-monitor",
 			name: "批量注册",
 			router: "/user/register",
 			type: 1,
@@ -103,7 +103,7 @@ export const menuList = [
 		}],
 	},
 	{
-		icon: "icon-user",
+		icon: "icon-card",
 		name: "支付管理",
 		router: "/pay",
 		type: 1,
@@ -111,7 +111,7 @@ export const menuList = [
 		viewPath: "views/errorpage/development.vue",
 	},
 	{
-		icon: "icon-user",
+		icon: "icon-news",
 		name: "个人信息",
 		router: "/personal",
 		type: 1,
